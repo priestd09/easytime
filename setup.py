@@ -7,7 +7,7 @@ setup(
 
     # Basic package information:
     name = 'easytime',
-    version = '0.1.1',
+    version = '0.1.2',
     py_modules = ('easytime',),
 
     # Packaging options:
