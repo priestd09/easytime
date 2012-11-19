@@ -31,3 +31,8 @@ class easytime(datetime):
         """
         current_tz = timezone(self.tzname() or 'UTC')
         return current_tz.localize(self).astimezone(timezone(tz))
+
+
+# Prevent users from generating naive localtime objects--forces the user to
+# *always* use UTC.
+easytime.now = easytime.utcnow
