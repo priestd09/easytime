@@ -19,8 +19,8 @@ Maybe you will too.
 Using `easytime` is, well, ... *easy*. There are only a couple things you need
 to know:
 
-1. Always use UTC when storing timestamps. The best way to do this is via the
-   `easytime.utcnow()` method, for instance:
+1. Always use UTC when handling time in your program. The best way to do this
+   is via the `easytime.utcnow()` method, for instance:
 
    ```python
    >>> from easytime import easytime
