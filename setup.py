@@ -15,7 +15,7 @@ setup(
     include_package_data = True,
 
     # Package dependencies:
-    install_requires = ['python-dateutil>=2.1'],
+    install_requires = ['pytz>=2012h'],
 
     # Metadata for PyPI:
     author = 'Randall Degges',
