@@ -14,6 +14,22 @@ way, and I enjoy it.
 Maybe you will too.
 
 
+## Install
+
+The simplest way to install `easytime` is via `pip`, the python package manager:
+
+```bash
+$ pip install easytime
+```
+
+If you'd like to upgrade `easytime` to the latest release, you can do so at any
+time by running:
+
+```bash
+$ pip install -U easytime
+```
+
+
 ## Usage
 
 Using `easytime` is, well, ... *easy*. There are only a couple things you need
