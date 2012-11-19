@@ -2,29 +2,32 @@
 
 
 from datetime import datetime
-from dateutil import tz
+from pytz import timezone
 
 
-def now(timezone='UTC'):
-    """Return the current datetime, in the specified timezone.
+class easytime(datetime):
+    """A simple datetime wrapper."""
 
-    Usage::
+    def convert(self, tz='UTC'):
+        """Convert this datetime to the specified timezone.
 
-        >>> from easytime import now
-        >>> time_utc = now()
-        2012-11-17 23:16:16.252081+00:00
-        >>> time_la = now('America/Los_Angeles')
-        2012-11-17 15:16:16.252357-08:00
-        >>> time_chicago = now('America/Chicago')
-        2012-11-17 17:16:16.252664-06:00
-        >>> time_berlin = now('Europe/Berlin')
-        2012-11-18 00:16:16.253005+01:00
+        Usage::
 
-    :param str timezone: The timezone to output the current time in. Defaults to
-        'UTC'. You can find a full list of available timezones at:
-        http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-    :rtype: datetime
-    :returns: A python datetime object, with the correct current local time of
-        the given timezone.
-    """
-    return datetime.utcnow().replace(tzinfo=tz.gettz('UTC')).astimezone(tz.gettz(timezone))
+            >>> from easytime import easytime
+            >>> current_time_utc = easytime.utcnow()
+            >>> current_time_utc
+            easytime(2012, 11, 19, 0, 48, 59, 741991)
+            >>> current_time_utc.convert('America/Los_Angeles')
+            datetime.datetime(2012, 11, 18, 16, 48, 59, 741991, tzinfo=<DstTzInfo 'America/Los_Angeles' PST-1 day, 16:00:00 STD>)
+            >>> current_time_utc.convert('Europe/Berlin')
+            datetime.datetime(2012, 11, 19, 1, 48, 59, 741991, tzinfo=<DstTzInfo 'Europe/Berlin' CET+1:00:00 STD>)
+
+        :param str tz: The timezone to output the current time in. Defaults to
+            'UTC'. You can find a full list of available timezones at:
+            http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+        :rtype: datetime
+        :returns: A python datetime object, with the correct current local time
+            of the given timezone.
+        """
+        current_tz = timezone(self.tzname() or 'UTC')
+        return current_tz.localize(self).astimezone(timezone(tz))
